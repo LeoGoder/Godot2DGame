@@ -21,5 +21,13 @@ shape = SubResource("CircleShape2D_f0hxs")
 position = Vector2(120, -19)
 texture = ExtResource("1_38jfh")
 
-[node name="Marker2D" type="Marker2D" parent="Pivot/Pistol"]
+[node name="BulletShoot" type="Marker2D" parent="Pivot/Pistol"]
+unique_name_in_owner = true
 position = Vector2(24, -10)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

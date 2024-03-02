@@ -9,9 +9,11 @@ height = 104.0
 
 [node name="Mobs" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_32t2h")
 
 [node name="Slime" parent="." instance=ExtResource("1_w71ho")]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -30)
