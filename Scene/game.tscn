@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ts4gb4qfcuo8" path="res://Scene/character_body_2d.tscn" id="1_ki52t"]
 [ext_resource type="Script" path="res://Script/game.gd" id="1_xjqex"]
 [ext_resource type="PackedScene" uid="uid://c73ssen07v81b" path="res://Scene/PineTree.tscn" id="2_aow4h"]
+[ext_resource type="Script" path="res://Script/CurrentScore.gd" id="4_wlttd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpn7q"]
 size = Vector2(1934, 20)
@@ -13,10 +14,6 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="LabelSettings" id="LabelSettings_ihtw5"]
-font_size = 64
-font_color = Color(0, 0, 0, 1)
-
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xjqex")
@@ -26,7 +23,7 @@ offset_right = 1921.0
 offset_bottom = 1074.0
 
 [node name="Player" parent="." instance=ExtResource("1_ki52t")]
-position = Vector2(584, 353)
+position = Vector2(698, 387)
 
 [node name="PineTree" parent="." instance=ExtResource("2_aow4h")]
 position = Vector2(164, 118)
@@ -102,46 +99,54 @@ unique_name_in_owner = true
 visible = false
 
 [node name="Label" type="Label" parent="GameOverScreen"]
-modulate = Color(0, 0, 0, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -199.5
 offset_right = 199.5
-offset_bottom = 88.0
+offset_bottom = 131.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
 text = "Game Over ! "
-label_settings = SubResource("LabelSettings_ihtw5")
 
 [node name="Restart" type="Button" parent="GameOverScreen"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -351.0
-offset_right = 162.0
-offset_bottom = -257.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 890.0
+offset_top = 383.0
+offset_right = 1076.0
+offset_bottom = 476.0
 theme_override_font_sizes/font_size = 32
 text = "Restart"
 
 [node name="Quit" type="Button" parent="GameOverScreen"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -175.0
-offset_right = 162.0
-offset_bottom = -81.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 890.0
+offset_top = 524.0
+offset_right = 1079.0
+offset_bottom = 624.0
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
+[node name="Score" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Score"]
+offset_left = 1541.0
+offset_top = 39.0
+offset_right = 1771.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Score : "
+
+[node name="CurrentScore" type="Label" parent="Score"]
+offset_left = 1769.0
+offset_top = 47.0
+offset_right = 1841.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+script = ExtResource("4_wlttd")
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOverScreen/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOverScreen/Quit" to="." method="_on_quit_pressed"]

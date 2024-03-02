@@ -17,7 +17,9 @@ func TakeDamage():
 	%Slime.play_hurt()
 	if health == 0:
 		queue_free()
+		Global.EnnemyKilled += 1
 		const SmokeScene = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var smoke = SmokeScene.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
+		

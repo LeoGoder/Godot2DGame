@@ -13,5 +13,16 @@ func _on_timer_timeout():
 
 
 func _on_player_health_depleted():
-	%GameOverScreen.visible = true
-	get_tree().paused = true
+	%GameOverScreen.show()
+	Engine.time_scale = 0
+
+
+
+
+func _on_quit_pressed():
+	get_tree().quit()
+
+
+func _on_restart_pressed():
+	get_tree().change_scene_to_file("res://.godot/exported/133200997/export-3c636b806aa9ba0a0547fbcdae143120-game.scn")
+	Engine.time_scale = 1

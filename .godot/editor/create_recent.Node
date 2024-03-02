@@ -1,6 +1,9 @@
-Button
 Label
 CanvasLayer
+Button
+VBoxContainer
+MarginContainer
+Control
 Timer
 PathFollow2D
 Path2D
@@ -9,6 +12,3 @@ CollisionShape2D
 ProgressBar
 Area2D
 Camera2D
-Marker2D
-CharacterBody2D
-ColorRect
